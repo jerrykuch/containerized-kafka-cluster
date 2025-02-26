@@ -40,7 +40,8 @@ You'll end up with a barebones JLine-free minimally usable ZK shell.
 directories; also add some scripts for deleting the contents thereof
 during a full teardown.
 - Possibly add `kafka-ui` container
+   - [kafka-ui on GitHub]([https://github.com/provectus/kafka-ui) has
+     a bunch of example configurations with various bells and whistles     
 - Possibly add some of the Confluent platform images from
   `confluentinc/cp-*` on Docker Hub, assuming I end up needing them
   for what I ultimately use this for.
-  
