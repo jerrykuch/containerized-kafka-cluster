@@ -11,7 +11,6 @@
 #   You can bring up part of the cluster with below command:
 #     $ docker-compose up -d kafka1 kafka2 kafka3
 
-version: '3.3'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:${CONFLUENT_PLATFORM_VERSION:-7.6.0}
@@ -20,7 +19,7 @@ services:
     - 2888 # "2888:2888"
     - 3888 # "3888:3888"
     healthcheck:
-      test: echo stat | nc localhost 2181
+      test: ["CMD-SHELL", "wget -q -O- localhost:8080/commands/ruok | grep -q '\"error\" : null'"]
       interval: 10s
       timeout: 10s
       retries: 3
@@ -36,7 +35,8 @@ services:
     healthcheck:
       test: ps augwwx | egrep kafka.Kafka
     depends_on:
-    - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
     - 9092 # "9091:9091"
     environment:
@@ -52,7 +52,8 @@ services:
     healthcheck:
       test: ps augwwx | egrep kafka.Kafka
     depends_on:
-    - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
     - 9092 # "9092:9092"
     environment:
@@ -68,7 +69,8 @@ services:
     healthcheck:
       test: ps augwwx | egrep kafka.Kafka
     depends_on:
-    - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
     - 9092 # "9093:9093"
     environment:
@@ -84,7 +86,8 @@ services:
     healthcheck:
       test: ps augwwx | egrep kafka.Kafka
     depends_on:
-    - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
     - 9092 # "9094:9094"
     environment:
@@ -100,7 +103,8 @@ services:
     healthcheck:
       test: ps augwwx | egrep kafka.Kafka
     depends_on:
-    - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
     - 9092 # "9095:9095"
     environment:
