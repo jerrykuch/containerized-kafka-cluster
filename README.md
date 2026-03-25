@@ -39,9 +39,17 @@ You'll end up with a barebones JLine-free minimally usable ZK shell.
 - Mount host volumes in the containers to use as the cluster's data
 directories; also add some scripts for deleting the contents thereof
 during a full teardown.
-- Possibly add `kafka-ui` container
-   - [kafka-ui on GitHub]([https://github.com/provectus/kafka-ui) has
-     a bunch of example configurations with various bells and whistles     
+- Possibly add Kafbat UI (`kafbat/kafka-ui`) container for web-based cluster management
+   - **Note:** Use `kafbat/kafka-ui`, NOT `provectus/kafka-ui` (abandoned with known security vulnerabilities)
+   - [Kafbat UI on GitHub](https://github.com/kafbat/kafka-ui) - actively maintained fork
+   - [Docker Compose examples](https://ui.docs.kafbat.io/configuration/compose-examples)
+   - Provides web UI for browsing topics, messages, consumer groups, and cluster metrics
+   - Simple integration: just needs bootstrap servers and optionally Zookeeper connection
+- Possibly add Confluent Schema Registry (`confluentinc/cp-schema-registry`)
+   - Centralized schema management for Avro, Protobuf, and JSON schemas
+   - Version control and compatibility checking for message schemas
+   - Integrates with Kafbat UI for schema browsing
+   - Uses Kafka itself as storage backend (via `_schemas` topic)
 - Possibly add some of the Confluent platform images from
   `confluentinc/cp-*` on Docker Hub, assuming I end up needing them
   for what I ultimately use this for.
