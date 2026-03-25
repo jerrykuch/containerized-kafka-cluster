@@ -36,16 +36,16 @@ You'll end up with a barebones JLine-free minimally usable ZK shell.
 
 ## Nice to Haves to Add Later
 
-- Mount host volumes in the containers to use as the cluster's data
+- **Data Storage:** Mount host volumes in the containers to use as the cluster's data
 directories; also add some scripts for deleting the contents thereof
 during a full teardown.
-- Possibly add Kafbat UI (`kafbat/kafka-ui`) container for web-based cluster management
+- Possibly add **Kafbat UI** (`kafbat/kafka-ui`) container for web-based cluster management
    - **Note:** Use `kafbat/kafka-ui`, NOT `provectus/kafka-ui` (abandoned with known security vulnerabilities)
    - [Kafbat UI on GitHub](https://github.com/kafbat/kafka-ui) - actively maintained fork
    - [Docker Compose examples](https://ui.docs.kafbat.io/configuration/compose-examples)
    - Provides web UI for browsing topics, messages, consumer groups, and cluster metrics
    - Simple integration: just needs bootstrap servers and optionally Zookeeper connection
-- Possibly add Confluent Schema Registry (`confluentinc/cp-schema-registry`)
+- Possibly add **Confluent Schema Registry** (`confluentinc/cp-schema-registry`)
    - Centralized schema management for Avro, Protobuf, and JSON schemas
    - Version control and compatibility checking for message schemas
    - Integrates with Kafbat UI for schema browsing
